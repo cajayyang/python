@@ -1,0 +1,20 @@
+#!/user/bin/python
+
+
+'''
+python 2.7
+
+sudo apt-get install python-beautifulsoup
+sudo apt-get install python-bs4 python-bs4-doc
+
+'''
+
+from bs4 import BeautifulSoup
+import urllib
+
+htmlfile = urllib.urlopen("https://who.is/whois/santander.us")
+htmltext = str(htmlfile.read())
+
+soup = BeautifulSoup(htmltext)
+print soup.find('div',text='Registered On').findNextSibling().string
+print soup.find('div',class_='col-md-offset-1',text='Name').findNextSibling().string
